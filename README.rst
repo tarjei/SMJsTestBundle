@@ -56,11 +56,10 @@ Then register the bundle with your kernel::
     
     // app/AppKernel.php
     // in AppKernel::registerBundles()
-    $bundles = array(
-        // ...
-        new SM\JsTestBundle\SMJsTestBundle(),
-        // ...
-    );
+    if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        // do not use this bundle in production!
+        $bundles[] = new SM\JsTestBundle\SMJsTestBundle();
+    }
 
 Make sure that you also register the namespaces with the autoloader::
 
