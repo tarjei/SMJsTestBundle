@@ -13,12 +13,11 @@ The idea is that this macro is inclded at the top of the page, after other js
     tests
 #}
 {% macro qunit_tests(module_name,test_path ) %}
-{% if app.request.query.get('fpgJsTest') %}
-<div id="fpgJsTestRunner">
-    <link rel="stylesheet" href="{{ asset('bundles/fpgjstest/css/qunit.css') }}" type="text/css" media="screen" />
-    <script type="text/javascript" src="{{ asset('bundles/fpgjstest/js/qunit.js') }}"></script>
-    <script type="text/javascript" src="{{
-    asset('bundles/fpgjstest/js/jquery.simulate.drag-sortable.js') }}"></script>
+{% if app.request.query.get('smJsTest') %}
+<div id="smJsTestRunner">
+    <link rel="stylesheet" href="{{ asset('bundles/smjstest/css/qunit.css') }}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{{ asset('bundles/smjstest/js/qunit.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/smjstest/js/jquery.simulate.drag-sortable.js') }}"></script>
     <script type="text/javascript" src="{{ asset(test_path) }}"></script>
         <h1 id="qunit-header">
             {% block suite_name %}

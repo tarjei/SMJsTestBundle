@@ -28,7 +28,7 @@ Then you add in the body of the template for the page you want to test:
             ...
         </body>
 
-And request the page with an extra request parameter: /mypage?fpgJsTest=true.
+And request the page with an extra request parameter: /mypage?smJsTest=true.
 
 Then the module will inject the complete Qunit markup as well as the qunit.js script ++ and the tests inmoduleHandler_tests.js will be run.
 
