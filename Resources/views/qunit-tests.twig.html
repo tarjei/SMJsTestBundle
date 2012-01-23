@@ -1,0 +1,39 @@
+{#
+The idea is that this macro is inclded at the top of the page, after other js
+    scripts have been included to run tests spesific to that page. This ensures
+    that js testmarkup and page markup is kept insync.
+
+    (a drawback is that they cannot be run w/o the app - use other tests for
+     standalone libs, that is not the goal of this package.)
+
+    Macro inputs:
+
+    module_name: string
+    test_path: path to beused by asset() to include the file containing the
+    tests
+#}
+{% macro qunit_tests(module_name,test_path ) %}
+{% if app.request.query.get('fpgJsTest') %}
+<div id="fpgJsTestRunner">
+    <link rel="stylesheet" href="{{ asset('bundles/fpgjstest/css/qunit.css') }}" type="text/css" media="screen" />
+    <script type="text/javascript" src="{{ asset('bundles/fpgjstest/js/qunit.js') }}"></script>
+    <script type="text/javascript" src="{{
+    asset('bundles/fpgjstest/js/jquery.simulate.drag-sortable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset(test_path) }}"></script>
+        <h1 id="qunit-header">
+            {% block suite_name %}
+            QUnit Tests
+            {% endblock suite_name %}
+        </h1>
+        <h2 id="qunit-banner">
+        </h2>
+        <div id="qunit-testrunner-toolbar">
+        </div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests">
+        </ol>
+        <div id="qunit-fixture">
+        </div>
+</div>
+{% endif %}
+{% endmacro %}
