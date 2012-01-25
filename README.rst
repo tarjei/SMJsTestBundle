@@ -24,7 +24,10 @@ Then you add in the body of the template for the page you want to test:
 
         <body>
             ... 
-            {{ qunit_tests("ModuleHandler", 'bundles/mybundle/js/moduleHandler_tests.js') }}
+            {% if app.environment in ["dev", "test"] %}
+                {% from "SMJsTestBundle::qunit-tests.twig.html" import qunit_tests %}
+                {{ qunit_tests("ModuleHandler", 'bundles/mybundle/js/moduleHandler_tests.js') }}
+            {% endif %}
             ...
         </body>
 
